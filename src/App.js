@@ -38,12 +38,9 @@ const App = () => {
   return (
     <div>
       <h1>My Hacker Stories</h1>
-      <InputWithLabel
-        id="search"
-        label="Search"
-        search={value}
-        onInputChange={handleSearch}
-      />
+      <InputWithLabel id="search" search={value} onInputChange={handleSearch}>
+        <strong>Search:</strong>
+      </InputWithLabel>
       <hr />
       <List list={searchedStories} />
     </div>
