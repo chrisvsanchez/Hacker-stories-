@@ -12,7 +12,7 @@ const StyledLabel = styled.label`
 `;
 
 const StyledInput = styled.input`
-  border: none;
+  border: none;q
   border-bottom: 1px solid #171212;
   background-color: transparent;
 
@@ -42,9 +42,9 @@ const StyledButton = styled.button`
     color: #ffffff;
   }
 `;
-const StyledButtonSmall = styled(StyledButton)`
-  padding: 5px;
-`;
+// const StyledButtonSmall = styled(StyledButton)`
+//   padding: 5px;
+// `;
 
 const StyledButtonLarge = styled(StyledButton)`
   padding: 10px;
