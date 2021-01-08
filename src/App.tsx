@@ -267,3 +267,5 @@ const Item = ({ item, onRemoveItem }: ItemProps) => (
 );
 
 export default App;
+
+export { storiesReducer, SearchForm, InputWithLabel, List, Item };
