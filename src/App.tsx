@@ -2,6 +2,8 @@
 import React from "react";
 import axios from "axios";
 import "./App.module.css";
+import SearchForm from "./SearchForm";
+import List from "./List";
 import { ReactComponent as Check } from "./check.svg";
 const API_ENDPOINT = "https://hn.algolia.com/api/v1/search?query=";
 
@@ -171,27 +173,6 @@ type SearchFormProps = {
   onSearchSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 };
 
-const SearchForm = ({
-  searchTerm,
-  onSearchInput,
-  onSearchSubmit,
-}: SearchFormProps) => (
-  <form onSubmit={onSearchSubmit}>
-    <InputWithLabel
-      id="search"
-      value={searchTerm}
-      isFocused
-      onInputChange={onSearchInput}
-    >
-      <strong>Search:</strong>
-    </InputWithLabel>
-
-    <button type="submit" disabled={!searchTerm}>
-      Submit
-    </button>
-  </form>
-);
-
 type InputWithLabelProps = {
   id: string;
   value: string;
@@ -201,71 +182,11 @@ type InputWithLabelProps = {
   children: React.ReactNode;
 };
 
-const InputWithLabel = ({
-  id,
-  value,
-  type = "text",
-  onInputChange,
-  isFocused,
-  children,
-}: InputWithLabelProps) => {
-  const inputRef = React.useRef<HTMLInputElement>(null!);
-
-  React.useEffect(() => {
-    if (isFocused && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isFocused]);
-
-  return (
-    <>
-      <label htmlFor={id}>{children}</label>
-      &nbsp;
-      <input
-        ref={inputRef}
-        id={id}
-        type={type}
-        value={value}
-        onChange={onInputChange}
-      />
-    </>
-  );
-};
-
 type ListProps = {
   list: Stories;
   onRemoveItem: (item: Story) => void;
 };
 
-const List = ({ list, onRemoveItem }: ListProps) => (
-  <>
-    {list.map((item) => (
-      <Item key={item.objectID} item={item} onRemoveItem={onRemoveItem} />
-    ))}
-  </>
-);
-
-type ItemProps = {
-  item: Story;
-  onRemoveItem: (item: Story) => void;
-};
-
-const Item = ({ item, onRemoveItem }: ItemProps) => (
-  <div>
-    <span>
-      <a href={item.url}>{item.title}</a>
-    </span>
-    <span>{item.author}</span>
-    <span>{item.num_comments}</span>
-    <span>{item.points}</span>
-    <span>
-      <button type="button" onClick={() => onRemoveItem(item)}>
-        <Check />
-      </button>
-    </span>
-  </div>
-);
-
 export default App;
 
-export { storiesReducer, SearchForm, InputWithLabel, List, Item };
+export { storiesReducer };
